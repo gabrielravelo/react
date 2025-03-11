@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 
-export const AddCategory = () => {
+export const AddCategory = ({ onNewCategory }) => {
 
-  const [inputValue, setInputValue] = useState('One Piece');
+  const [inputValue, setInputValue] = useState('');
 
   const onInputChange = ({ target }) => {
     setInputValue( target.value );
@@ -11,7 +11,12 @@ export const AddCategory = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(inputValue);
+    const newValue = inputValue.trim();
+    if ( newValue.length <= 1 ) return;
+
+    // setCategories( categories => [inputValue, ...categories]);
+    onNewCategory( newValue );
+    setInputValue('');
   }
 
   return (
