@@ -14,7 +14,7 @@ export const HeroCard = ({
     characters,
 }) => {
     
-    const heroImageUrl = `/heroes/${ id }.jpg`;
+    const heroImageUrl =  `https://gabrielravelo.github.io/heroes-react-spa/heroes/${ id }.jpg`;
     // const charactersByHero = (<p>{ characters }</p>);
 
     return (
