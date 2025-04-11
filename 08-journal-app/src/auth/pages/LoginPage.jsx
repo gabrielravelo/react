@@ -22,11 +22,13 @@ export const LoginPage = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        //! no es esta la accion a despachar
         dispatch( checkingAuthentication(email, password) );
     }
 
     const onGoogleSignIn = () => {
-        console.log('onGoogleSignIn');
+        // console.log('onGoogleSignIn');
         dispatch( startGoogleSignIn() );
     }
 

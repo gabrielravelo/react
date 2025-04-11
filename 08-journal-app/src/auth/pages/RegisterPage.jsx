@@ -1,9 +1,11 @@
 import { Link as RouterLink } from 'react-router';
 import { Google } from '@mui/icons-material';
-import { Button, Grid2, Link, TextField, Typography } from '@mui/material';
+import { Alert, Button, Grid2, Link, TextField, Typography } from '@mui/material';
 import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { startCreatingUserWithEmailPassword } from '../../store/auth';
 
 const formData = {
     email: '',
@@ -19,7 +21,11 @@ const formValidations = {
 
 export const RegisterPage = () => {
 
-    const [formSubmitted, setFormSubmitted] = useState(false)
+    const dispatch = useDispatch();
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
+    const { status, errorMessage } = useSelector( state => state.auth );
+    const isCheckingAuthentication = useMemo( () => status === 'checking', [status]);
 
     const { 
         displayName, 
@@ -37,7 +43,10 @@ export const RegisterPage = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         setFormSubmitted(true);
-        console.log(formState);
+
+        if ( !isFormValid ) return;
+        
+        dispatch( startCreatingUserWithEmailPassword(formState) );
     }
 
     return (
@@ -87,8 +96,16 @@ export const RegisterPage = () => {
                     </Grid2>
 
                     <Grid2 size={ 12 } container spacing={ 2 } sx={{ mb: 2, mt: 2 }}>
+                        <Grid2 size={ 12 } display={ !!errorMessage ? '' : 'none' }>
+                            <Alert severity='error'>{ errorMessage }</Alert>
+                        </Grid2>
                         <Grid2 size={ 12 }>
-                            <Button type='submit' variant="contained" fullWidth>
+                            <Button
+                                disabled={ isCheckingAuthentication } 
+                                type='submit' 
+                                variant="contained" 
+                                fullWidth
+                            >
                                 Crear cuenta
                             </Button>
                         </Grid2>
