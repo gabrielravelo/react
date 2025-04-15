@@ -51,8 +51,8 @@ export const LoginPage = () => {
     }
 
     return (
-        <AuthLayout title="Ingresar">
-            <form onSubmit={ onSubmit }>
+        <AuthLayout title="Login">
+            <form onSubmit={ onSubmit } className='animate__animated animate__fadeIn animate__faster'>
                 <Grid2 container>
                     <Grid2 size={ 12 } sx={{ mt: 2 }}>
                         <TextField 
