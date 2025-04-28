@@ -40,6 +40,18 @@ export const CalendarPage = () => {
         }
     }
 
+    const onDoubleClick = ( event ) => {
+        console.log({ doubleClick: event });
+    }
+
+    const onSelect = ( event ) => {
+        console.log({ click: event });
+    }
+
+    const onViewChanged = ( event ) => {
+        console.log({ viewChanged: event });
+    }
+
     return (
         <>
             <Navbar onChangeLanguage={ onChangeLanguage } />
@@ -60,6 +72,9 @@ export const CalendarPage = () => {
                 components={{ 
                     event: CalendarEvent
                 }}
+                onDoubleClickEvent={ onDoubleClick }
+                onSelectEvent={ onSelect }
+                // onView={ onViewChanged }
             />
         </>
     )
