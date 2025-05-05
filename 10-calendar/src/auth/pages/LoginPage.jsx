@@ -1,5 +1,3 @@
-import React from 'react';
-import './LoginPage.css';
 
 export const LoginPage = () => {
     return (
@@ -22,10 +20,10 @@ export const LoginPage = () => {
                                 placeholder="Contraseña"
                             />
                         </div>
-                        <div className="row">
+                        <div className="form-group mb-2">
                             <input 
                                 type="submit"
-                                className="btnSubmit col"
+                                className="btnSubmit"
                                 value="Login" 
                             />
                         </div>
@@ -65,10 +63,10 @@ export const LoginPage = () => {
                             />
                         </div>
 
-                        <div className="row">
+                        <div className="form-group mb-2">
                             <input 
                                 type="submit" 
-                                className="btnSubmit col" 
+                                className="btnSubmit" 
                                 value="Crear cuenta" />
                         </div>
                     </form>
